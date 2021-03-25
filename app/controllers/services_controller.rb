@@ -6,8 +6,41 @@ class ServicesController < ApplicationController
   end
 
   def show
+
     service = Service.find(params[:id])
-    render json: { status: STATUS['success'], message: 'Loaded service', data: service }
+
+    conditioner = service['conditioner']
+    washing_powder = service['washing_powder']
+
+    conditioner_price = 0
+    powder_price = 0
+
+    if conditioner == true && washing_powder == true
+      conditioner_price = 5
+      powder_price = 5
+    elsif conditioner == true
+      conditioner_price = 5
+    else
+      powder_price = 5
+    end
+
+    mode = Mode.find_by(id: service['mode_id'])
+    mode_price = mode['price']
+
+    washing = Washing.find_by(id: service['washing_id'])
+    washer = Washer.find_by(id: washing['washer_id'])
+    size = Size.find_by(id: washer['size_id'])
+    size_price = size['price']
+
+    total = conditioner_price + powder_price + mode_price + size_price
+
+    render json:
+    {
+      status: STATUS['success'],
+      message: "Loaded service:  Price for washing powder: #{powder_price},  Price for conditioner: #{conditioner_price},   Price for size: #{size_price},  Price for mode: #{mode_price},  Total: #{total}  ",
+      data: service
+    }
+
   end
 
   def create

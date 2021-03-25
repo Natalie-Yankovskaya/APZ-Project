@@ -30,15 +30,15 @@ Size.create(max_load: 8, price: 20)
 Size.create(max_load: 12, price: 30)
 
 Mode.create(name: 'Швидке прання', minutes: 60, price: 30)
-#Mode.create(name: 'Середнє прання', minutes: 120, price: 40)
-#Mode.create(name: 'Повне прання', minutes: 180, price: 50)
+Mode.create(name: 'Середнє прання', minutes: 120, price: 40)
+Mode.create(name: 'Повне прання', minutes: 180, price: 50)
 
 
-#Washer.create(laundry_id: 1, serial_number: '0122313', firm: 'SAMSUNG', model: 'WHP60SF/UA', status: 'працює', number_of_programs: 6, size_id: 1)
-#Washer.create(laundry_id: 1, serial_number: '0173711', firm: 'Gorenje', model: 'EW6T4R272', status: 'не працює', number_of_programs: 2, size_id: 2)
-#Washer.create(laundry_id: 2, serial_number: '1239912', firm: 'SAMSUNG', model: 'WHP60SF/UA', status: 'працює', number_of_programs: 4, size_id: 3)
+Washer.create(laundry_id: 1, serial_number: '0122313', firm: 'SAMSUNG', model: 'WHP60SF/UA', status: 'працює', number_of_programs: 6, size_id: 1)
+Washer.create(laundry_id: 1, serial_number: '0173711', firm: 'Gorenje', model: 'EW6T4R272', status: 'не працює', number_of_programs: 2, size_id: 2)
+Washer.create(laundry_id: 2, serial_number: '1239912', firm: 'SAMSUNG', model: 'WHP60SF/UA', status: 'працює', number_of_programs: 4, size_id: 3)
 
 
-#Washing.create(washer_id: 1, customer_id: 1, status: 'Переться', remaining_time: 30, password: 1234)
+Washing.create(washer_id: 1, customer_id: 1, status: 'Переться', remaining_time: 30, password: 1234)
 
-#Service.create(washing_id: 1, mode_id: 1, washing_powder: true, conditioner: false)
+Service.create(washing_id: 1, mode_id: 1, washing_powder: true, conditioner: false)
