@@ -1,0 +1,1 @@
+CONFIG_SECRET = YAML.load_file(Rails.root.join('config/secret_token.yml'))

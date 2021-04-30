@@ -1,0 +1,3 @@
+class Breakdown < ApplicationRecord
+    
+end

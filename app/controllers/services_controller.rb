@@ -2,10 +2,17 @@ STATUS = YAML.load_file(Rails.root.join('config/locales/statuses.yml'))
 class ServicesController < ApplicationController
   def index
     services = Service.all
-    render json: { status: STATUS['success'], message: 'Loaded services', data: services }
+    render json: { status: STATUS['success'], message: "Loaded services", data: services }
   end
 
   def show
+
+    pattern = /^Bearer /
+    header  = request.headers['Authorization']
+    header.gsub(pattern, '') if header && header.match(pattern)
+    if header.nil?
+      render json: { status: STATUS['bad_request'], message: 'Authorization failed'}
+    else
 
     service = Service.find(params[:id])
 
@@ -40,6 +47,7 @@ class ServicesController < ApplicationController
       message: "Loaded service:  Price for washing powder: #{powder_price},  Price for conditioner: #{conditioner_price},   Price for size: #{size_price},  Price for mode: #{mode_price},  Total: #{total}  ",
       data: service
     }
+  end
 
   end
 
@@ -64,7 +72,7 @@ class ServicesController < ApplicationController
 
   private
   def service_params
-    params.permit(:id, :washing_id, :mode_id, :washing_powder)
+    params.permit(:id, :washing_id, :mode_id, :washing_powder, :conditioner)
   end
 
 end

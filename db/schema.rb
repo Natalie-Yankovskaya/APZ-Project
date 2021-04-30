@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210325072704) do
+ActiveRecord::Schema.define(version: 20210422063114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "breakdowns", force: :cascade do |t|
+    t.bigint "washer_id"
+    t.string "urgency"
+    t.boolean "taken"
+    t.boolean "status"
+    t.string "comment"
+    t.index ["washer_id"], name: "index_breakdowns_on_washer_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -31,6 +40,22 @@ ActiveRecord::Schema.define(version: 20210325072704) do
     t.string "name"
     t.integer "minutes"
     t.float "price"
+  end
+
+  create_table "repairers", force: :cascade do |t|
+    t.string "name"
+    t.string "surname"
+    t.string "phonenumber"
+  end
+
+  create_table "repairs", force: :cascade do |t|
+    t.bigint "breakdown_id"
+    t.bigint "repairer_id"
+    t.date "date"
+    t.float "price"
+    t.boolean "status"
+    t.index ["breakdown_id"], name: "index_repairs_on_breakdown_id"
+    t.index ["repairer_id"], name: "index_repairs_on_repairer_id"
   end
 
   create_table "services", force: :cascade do |t|

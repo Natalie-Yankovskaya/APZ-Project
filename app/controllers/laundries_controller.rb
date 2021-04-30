@@ -1,8 +1,10 @@
 STATUS = YAML.load_file(Rails.root.join('config/locales/statuses.yml'))
 class LaundriesController < ActionController::API
   def index
+    
     laundries = Laundry.all
     render json: { status: STATUS['success'], message: 'Loaded laundries', data: laundries }
+    
   end
 
   def show
