@@ -1,7 +1,11 @@
 STATUS = YAML.load_file(Rails.root.join('config/locales/statuses.yml'))
 class WashersController < ActionController::API
   def index
-    washers = Washer.all
+    if washer_params[:laundry_id].nil?
+      washers = Washer.all
+    else
+      washers = Washer.where(laundry_id: washer_params[:laundry_id])
+    end
     render json: { status: STATUS['success'], message: 'Loaded washer', data: washers }
   end
 

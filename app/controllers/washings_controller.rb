@@ -1,8 +1,12 @@
 STATUS = YAML.load_file(Rails.root.join('config/locales/statuses.yml'))
 class WashingsController < ActionController::API
   def index
-    washing = Washing.all
-    render json: { status: STATUS['success'], message: 'Loaded washings', data: washing }
+    if washing_params[:customer_id].nil?
+      washings = Washing.all
+    else
+      washings = Washing.where(customer_id: washing_params[:customer_id])
+    end
+    render json: { status: STATUS['success'], message: 'Loaded washer', data: washings }
   end
 
   def show
@@ -28,6 +32,8 @@ class WashingsController < ActionController::API
       render json: { status: STATUS['success'], message: 'This washings is deleted', data: washing }
     end
   end
+
+
 
   private
   def washing_params

@@ -24,6 +24,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_model_serializers (0.10.12)
+      actionpack (>= 4.1, < 6.2)
+      activemodel (>= 4.1, < 6.2)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (5.1.7)
       activesupport (= 5.1.7)
       globalid (>= 0.3.6)
@@ -39,8 +44,11 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (8.0.0)
+    bcrypt (3.1.16)
     builder (3.2.4)
     byebug (11.0.1)
+    case_transform (0.2)
+      activesupport
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     erubi (1.10.0)
@@ -48,6 +56,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    jsonapi-renderer (0.2.2)
     jwt (2.2.1)
     loofah (2.7.0)
       crass (~> 1.0.2)
@@ -117,7 +126,10 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  active_model_serializers
+  bcrypt
   byebug
+  i18n
   jwt
   pg (>= 0.18, < 2.0)
   puma (~> 3.7)

@@ -31,6 +31,7 @@ class LaundriesController < ActionController::API
     end
   end
 
+
   private
   def laundry_params
     params.permit(:id, :name, :address, :city)

@@ -3,6 +3,7 @@ class ServicesController < ApplicationController
   def index
     services = Service.all
     render json: { status: STATUS['success'], message: "Loaded services", data: services }
+    
   end
 
   def show
