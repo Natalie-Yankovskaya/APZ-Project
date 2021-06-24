@@ -8,13 +8,6 @@ class ServicesController < ApplicationController
 
   def show
 
-    pattern = /^Bearer /
-    header  = request.headers['Authorization']
-    header.gsub(pattern, '') if header && header.match(pattern)
-    if header.nil?
-      render json: { status: STATUS['bad_request'], message: 'Authorization failed'}
-    else
-
     service = Service.find(params[:id])
 
     conditioner = service['conditioner']
@@ -48,7 +41,6 @@ class ServicesController < ApplicationController
       message: "Loaded service:  Price for washing powder: #{powder_price},  Price for conditioner: #{conditioner_price},   Price for size: #{size_price},  Price for mode: #{mode_price},  Total: #{total}  ",
       data: service
     }
-  end
 
   end
 

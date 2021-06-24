@@ -1,16 +1,10 @@
 STATUS = YAML.load_file(Rails.root.join('config/locales/statuses.yml'))
 class ModesController < ActionController::API
   def index
-    pattern = /^Bearer /
-    header  = request.headers['Authorization']
-    header.gsub(pattern, '') if header && header.match(pattern)
 
-    puts header
-    if header.nil?
-      render json: { status: STATUS['bad_request'], message: 'Authorization failed'}
-    else
       modes = Mode.all
       render json: { status: STATUS['success'], message: 'Loaded modes', data: modes }
+      
     end
     
   end
