@@ -5,7 +5,6 @@ class ModesController < ActionController::API
       modes = Mode.all
       render json: { status: STATUS['success'], message: 'Loaded modes', data: modes }
       
-    end
     
   end
 
